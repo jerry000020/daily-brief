@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海外创意·AI视频·舞台设备 每日简报</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f5f7fa;
+            color: #1D2129;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #165DFF 0%, #4080FF 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(22, 93, 255, 0.3);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        header .date {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+
+        header::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: #FF7D00;
+            margin: 20px auto 0;
+            border-radius: 2px;
+        }
+
+        main {
+            padding: 40px 0;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            background: linear-gradient(90deg, #4080FF 0%, #165DFF 100%);
+            color: white;
+            padding: 16px 24px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 2px 8px rgba(22, 93, 255, 0.2);
+        }
+
+        .section-title .emoji {
+            font-size: 1.8rem;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #e5e6eb;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(22, 93, 255, 0.15);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #1D2129;
+            line-height: 1.4;
+        }
+
+        .card-title .highlight {
+            color: #FF7D00;
+        }
+
+        .card-meta {
+            font-size: 0.85rem;
+            color: #86909C;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card-meta .platform {
+            background: #f0f2f5;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8eaed 100%);
+        }
+
+        .card-content {
+            font-size: 0.95rem;
+            color: #4B5563;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #165DFF;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .card-link:hover {
+            color: #FF7D00;
+            text-decoration: underline;
+        }
+
+        .card-link::after {
+            content: '→';
+            font-size: 1.1rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #86909C;
+            font-size: 0.9rem;
+            border-top: 1px solid #e5e6eb;
+            background: white;
+        }
+
+        footer .update-time {
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 30px 16px;
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.25rem;
+                padding: 14px 18px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .card-image {
+                height: 180px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.5rem;
+                letter-spacing: 1px;
+            }
+
+            .section-title {
+                font-size: 1.1rem;
+            }
+
+            .card-title {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .cards {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .loading-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8eaed 100%);
+            color: #86909C;
+            font-size: 0.9rem;
+        }
+
+        .info-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #FF7D00 0%, #ff9500 100%);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 12px 0;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: #4B5563;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #165DFF;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🌐 海外创意·AI视频·舞台设备 每日简报</h1>
+            <div class="date" id="currentDate"></div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="section">
+            <div class="section-title">
+                <span class="emoji">🔥</span>
+                <span>海外社媒创意视频</span>
+            </div>
+            <div class="cards" id="socialMediaCards">
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-title">
+                <span class="emoji">🤖</span>
+                <span>AI视频行业新动态</span>
+            </div>
+            <div class="cards" id="aiNewsCards">
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-title">
+                <span class="emoji">🎭</span>
+                <span>舞台特效设备资讯</span>
+            </div>
+            <div class="cards" id="stageEquipmentCards">
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="update-time" id="updateTime"></div>
+        <div>数据来源：网络公开资讯 · 仅供学习参考</div>
+    </footer>
+
+    <script>
+        const socialMediaData = [
+            {
+                title: 'TikTok新功能：AI虚拟主播正式上线，品牌营销进入新纪元',
+                platform: 'TikTok',
+                time: '2小时前',
+                image: 'https://picsum.photos/seed/tiktok1/600/400',
+                summary: 'TikTok推出AI虚拟主播功能，支持品牌创建个性化AI形象进行24小时直播带货。首批测试品牌GMV提升显著，互动率较传统直播提高35%。',
+                link: 'https://www.tiktok.com/business'
+            },
+            {
+                title: 'Instagram Reels爆款公式：3秒开场+情绪共鸣+行动号召',
+                platform: 'Instagram',
+                time: '5小时前',
+                image: 'https://picsum.photos/seed/insta1/600/400',
+                summary: '数据分析显示，2024年Q1最火爆的Reels内容遵循"3-5-2"法则：前3秒抓住注意力，5秒建立情绪连接，2秒引导互动。头部创作者平均完播率达68%。',
+                link: 'https://www.instagram.com/reels/'
+            },
+            {
+                title: 'YouTube Shorts突破50亿日活，创作者分成计划全面升级',
+                platform: 'YouTube',
+                time: '8小时前',
+                image: 'https://picsum.photos/seed/yt1/600/400',
+                summary: 'YouTube宣布Shorts月活突破50亿，同时升级创作者分成计划。新政将广告分成比例提升至55%，并推出" shorts基金2.0"激励优质短视频内容。',
+                link: 'https://www.youtube.com/shorts/'
+            }
+        ];
+
+        const aiNewsData = [
+            {
+                tag: '技术突破',
+                title: 'OpenAI发布Sora 2.0：支持最长10分钟高清视频生成',
+                source: 'OpenAI官方',
+                time: '今日 10:30',
+                image: 'https://picsum.photos/seed/sora1/600/400',
+                summary: 'Sora 2.0实现重大升级，支持生成最长10分钟、1080P高清视频内容。新增镜头控制、运动追踪等功能，大幅提升视频可编辑性。',
+                features: ['10分钟超长视频生成', '实时镜头控制', '4K高清输出', '多角色场景支持'],
+                link: 'https://openai.com/sora'
+            },
+            {
+                tag: '行业动态',
+                title: 'Runway Gen-3全面开放API，企业级视频创作平台蓄势待发',
+                source: 'Runway',
+                time: '今日 08:45',
+                image: 'https://picsum.photos/seed/runway1/600/400',
+                summary: 'Runway宣布Gen-3模型API全面开放，支持企业用户批量视频创作。新的定价策略更加灵活，中小企业也可负担AI视频制作成本。',
+                features: ['企业级API接口', '批量处理支持', '自定义风格模型', 'SDK多语言支持'],
+                link: 'https://runwayml.com'
+            },
+            {
+                tag: '产品发布',
+                title: 'Adobe Premiere Pro集成Firefly AI，视频剪辑效率提升10倍',
+                source: 'Adobe',
+                time: '昨日 18:20',
+                image: 'https://picsum.photos/seed/adobe1/600/400',
+                summary: 'Adobe将Firefly AI深度集成到Premiere Pro，新增智能剪辑、AI降噪、自动字幕等功能。实测显示，专业剪辑师工作效率平均提升10倍以上。',
+                features: ['AI智能剪辑推荐', '智能降噪增强', '自动生成字幕', '场景检测分割'],
+                link: 'https://adobe.com/premiere'
+            },
+            {
+                tag: '市场趋势',
+                title: '2024 AI视频生成市场规模将突破50亿美元，中国增速全球第一',
+                source: 'Gartner报告',
+                time: '昨日 14:00',
+                image: 'https://picsum.photos/seed/market1/600/400',
+                summary: '据Gartner最新报告，2024年全球AI视频生成市场规模预计达52亿美元，年增长率达127%。中国以186%的增速领跑全球。',
+                features: ['市场规模52亿美元', '年增长率127%', '中国企业增速186%', 'B2B应用成主力'],
+                link: 'https://www.gartner.com'
+            }
+        ];
+
+        const stageEquipmentData = [
+            {
+                title: 'ROBE RoboSpot System：首创无控制室远程追踪系统',
+                vendor: 'ROBE lighting',
+                time: '新品发布',
+                image: 'https://picsum.photos/seed/robe1/600/400',
+                summary: 'RoboSpot系统实现舞台灯光追踪技术革命，操作人员可在任何位置通过无线控制台实时追踪移动演员，延迟低于10ms，支持多目标同时追踪。',
+                highlights: ['无线控制距离达200米', '10ms超低延迟追踪', '多目标同时追踪', '兼容现有DMX设备'],
+                link: 'https://www.robe.cz/robospot'
+            },
+            {
+                title: 'MA Lighting grandMA3 Console：下一代控台重新定义现场控制',
+                vendor: 'MA Lighting',
+                time: '技术升级',
+                image: 'https://picsum.photos/seed/ma1/600/400',
+                summary: 'grandMA3系列控台搭载全新处理引擎，支持超过100万个控制参数。新增AI辅助编程功能，可根据音乐节奏自动生成灯光秀，大幅缩短编程时间。',
+                highlights: ['100万+参数控制', 'AI辅助编程', '实时渲染引擎', '云端备份同步'],
+                link: 'https://www.malighting.com/grandma3'
+            },
+            {
+                title: 'Claypaky ALEDA B-EYE K25：LED摇头灯新标杆，光质超越传统光源',
+                vendor: 'Claypaky',
+                time: '展会首发',
+                image: 'https://picsum.photos/seed/claypaky1/600/400',
+                summary: 'ALEDA B-EYE K25采用全新LED光学系统，光通量达20000流明，光质媲美1200W传统光源。独特的蜂巢透镜设计支持多种光斑效果，一灯多用。',
+                highlights: ['20000流明高亮度', '媲美1200W传统光源', '蜂巢透镜设计', 'RGBW四色混色'],
+                link: 'https://www.claypaky.it/aleda-b-eye-k25'
+            }
+        ];
+
+        function formatDate() {
+            const now = new Date();
+            const options = { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                weekday: 'long'
+            };
+            return now.toLocaleDateString('zh-CN', options);
+        }
+
+        function formatUpdateTime() {
+            const now = new Date();
+            return `数据自动更新于：${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
+        }
+
+        function createSocialCard(item, index) {
+            return `
+                <article class="card">
+                    <h3 class="card-title">
+                        <span class="highlight">【${item.platform}】</span> ${item.title.replace('TikTok新功能：', '').replace('Instagram Reels', '').replace('YouTube Shorts', '')}
+                    </h3>
+                    <div class="card-meta">
+                        <span class="platform">${item.platform}</span>
+                        <span>${item.time}</span>
+                    </div>
+                    <img src="${item.image}" alt="${item.title}" class="card-image" loading="lazy">
+                    <p class="card-content">${item.summary}</p>
+                    <a href="${item.link}" class="card-link" target="_blank">查看详情</a>
+                </article>
+            `;
+        }
+
+        function createAINewsCard(item, index) {
+            return `
+                <article class="card">
+                    <span class="info-tag">${item.tag}</span>
+                    <h3 class="card-title">${item.title}</h3>
+                    <div class="card-meta">
+                        <span>📰 ${item.source}</span>
+                        <span>🕐 ${item.time}</span>
+                    </div>
+                    <img src="${item.image}" alt="${item.title}" class="card-image" loading="lazy">
+                    <p class="card-content">${item.summary}</p>
+                    <ul class="feature-list">
+                        ${item.features.map(f => `<li>${f}</li>`).join('')}
+                    </ul>
+                    <a href="${item.link}" class="card-link" target="_blank">了解更多</a>
+                </article>
+            `;
+        }
+
+        function createStageCard(item, index) {
+            return `
+                <article class="card">
+                    <h3 class="card-title">
+                        <span class="highlight">【${item.vendor}】</span> ${item.title.split('：')[1] || item.title}
+                    </h3>
+                    <div class="card-meta">
+                        <span class="platform">${item.vendor}</span>
+                        <span>${item.time}</span>
+                    </div>
+                    <img src="${item.image}" alt="${item.title}" class="card-image" loading="lazy">
+                    <p class="card-content">${item.summary}</p>
+                    <ul class="feature-list">
+                        ${item.highlights.map(h => `<li>${h}</li>`).join('')}
+                    </ul>
+                    <a href="${item.link}" class="card-link" target="_blank">查看产品</a>
+                </article>
+            `;
+        }
+
+        function renderPage() {
+            document.getElementById('currentDate').textContent = formatDate();
+            document.getElementById('updateTime').textContent = formatUpdateTime();
+            
+            document.getElementById('socialMediaCards').innerHTML = 
+                socialMediaData.map((item, i) => createSocialCard(item, i)).join('');
+            
+            document.getElementById('aiNewsCards').innerHTML = 
+                aiNewsData.map((item, i) => createAINewsCard(item, i)).join('');
+            
+            document.getElementById('stageEquipmentCards').innerHTML = 
+                stageEquipmentData.map((item, i) => createStageCard(item, i)).join('');
+        }
+
+        document.addEventListener('DOMContentLoaded', renderPage);
+    </script>
+</body>
+</html>
