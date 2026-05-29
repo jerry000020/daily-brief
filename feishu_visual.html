@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海外创意·AI视频·舞台设备 每日简报</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <div class="gradient-bg text-white py-8 px-4 shadow-lg">
+        <div class="max-w-6xl mx-auto">
+            <h1 class="text-4xl font-bold mb-2">📰 海外创意·AI视频·舞台设备 每日简报</h1>
+            <p class="text-xl opacity-90" id="current-date"></p>
+            <p class="text-sm opacity-75 mt-2">⏰ 更新时间：<span id="update-time"></span></p>
+        </div>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="max-w-6xl mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="stat-card rounded-xl p-6 shadow-md card-hover transition-all duration-300">
+                <div class="text-4xl mb-2">🔥</div>
+                <div class="text-3xl font-bold text-blue-600">3</div>
+                <div class="text-gray-600">爆款视频</div>
+            </div>
+            <div class="stat-card rounded-xl p-6 shadow-md card-hover transition-all duration-300">
+                <div class="text-4xl mb-2">🤖</div>
+                <div class="text-3xl font-bold text-purple-600">4</div>
+                <div class="text-gray-600">AI动态</div>
+            </div>
+            <div class="stat-card rounded-xl p-6 shadow-md card-hover transition-all duration-300">
+                <div class="text-4xl mb-2">🎭</div>
+                <div class="text-3xl font-bold text-green-600">3</div>
+                <div class="text-gray-600">设备资讯</div>
+            </div>
+            <div class="stat-card rounded-xl p-6 shadow-md card-hover transition-all duration-300">
+                <div class="text-4xl mb-2">📊</div>
+                <div class="text-3xl font-bold text-red-600">10</div>
+                <div class="text-gray-600">总内容数</div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div class="bg-white rounded-xl p-6 shadow-md">
+                <h3 class="text-xl font-bold mb-4">📊 内容分布</h3>
+                <canvas id="pieChart" width="400" height="400"></canvas>
+            </div>
+            <div class="bg-white rounded-xl p-6 shadow-md">
+                <h3 class="text-xl font-bold mb-4">📈 热度排行</h3>
+                <canvas id="barChart" width="400" height="400"></canvas>
+            </div>
+        </div>
+
+        <!-- Hot Videos Section -->
+        <div class="bg-white rounded-xl p-6 shadow-md mb-8">
+            <h2 class="text-2xl font-bold mb-6">🔥 海外社媒爆款视频</h2>
+            <div class="space-y-6">
+                <div class="border-l-4 border-blue-500 pl-6 py-4 bg-blue-50 rounded-r-lg card-hover transition-all duration-300">
+                    <div class="flex items-start">
+                        <img src="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=200&h=150&fit=crop" alt="激光秀" class="w-48 h-32 object-cover rounded-lg mr-6">
+                        <div class="flex-1">
+                            <h4 class="text-xl font-bold text-blue-900 mb-2">震撼激光秀｜音乐节超燃现场</h4>
+                            <div class="flex gap-4 mb-2 text-sm">
+                                <span class="bg-blue-500 text-white px-3 py-1 rounded-full">Facebook</span>
+                                <span class="text-gray-600">2小时前</span>
+                            </div>
+                            <div class="flex gap-6 mb-2 text-sm">
+                                <span class="font-bold text-blue-600">播放：120万</span>
+                                <span class="font-bold text-pink-600">点赞：8.5万</span>
+                            </div>
+                            <p class="text-gray-700 mb-3">顶级灯光团队打造的沉浸式视觉体验，配合电子音乐节奏引爆全场</p>
+                            <a href="https://www.facebook.com" target="_blank" class="inline-block bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                                🔗 查看视频
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-l-4 border-pink-500 pl-6 py-4 bg-pink-50 rounded-r-lg card-hover transition-all duration-300">
+                    <div class="flex items-start">
+                        <img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=200&h=150&fit=crop" alt="光影广告" class="w-48 h-32 object-cover rounded-lg mr-6">
+                        <div class="flex-1">
+                            <h4 class="text-xl font-bold text-pink-900 mb-2">创意产品展示｜光影艺术广告片</h4>
+                            <div class="flex gap-4 mb-2 text-sm">
+                                <span class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-1 rounded-full">Instagram</span>
+                                <span class="text-gray-600">5小时前</span>
+                            </div>
+                            <div class="flex gap-6 mb-2 text-sm">
+                                <span class="font-bold text-blue-600">播放：89万</span>
+                                <span class="font-bold text-pink-600">点赞：12万</span>
+                            </div>
+                            <p class="text-gray-700 mb-3">用光影变化完美展现产品质感，极简风格美学设计</p>
+                            <a href="https://www.instagram.com" target="_blank" class="inline-block bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-lg hover:opacity-90 transition-opacity">
+                                🔗 查看视频
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-l-4 border-purple-500 pl-6 py-4 bg-purple-50 rounded-r-lg card-hover transition-all duration-300">
+                    <div class="flex items-start">
+                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=200&h=150&fit=crop" alt="建筑投影" class="w-48 h-32 object-cover rounded-lg mr-6">
+                        <div class="flex-1">
+                            <h4 class="text-xl font-bold text-purple-900 mb-2">LED建筑投影｜城市夜空艺术</h4>
+                            <div class="flex gap-4 mb-2 text-sm">
+                                <span class="bg-purple-500 text-white px-3 py-1 rounded-full">Facebook</span>
+                                <span class="text-gray-600">8小时前</span>
+                            </div>
+                            <div class="flex gap-6 mb-2 text-sm">
+                                <span class="font-bold text-blue-600">播放：156万</span>
+                                <span class="font-bold text-pink-600">点赞：18万</span>
+                            </div>
+                            <p class="text-gray-700 mb-3">将地标建筑变为巨大画布，讲述城市发展故事</p>
+                            <a href="https://www.facebook.com" target="_blank" class="inline-block bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition-colors">
+                                🔗 查看视频
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI News Section -->
+        <div class="bg-white rounded-xl p-6 shadow-md mb-8">
+            <h2 class="text-2xl font-bold mb-6">🤖 AI视频最新动态</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="border border-gray-200 rounded-lg p-6 card-hover transition-all duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="text-4xl mr-4">🚀</div>
+                        <div>
+                            <h4 class="font-bold text-lg">Runway Gen-3 Alpha</h4>
+                            <span class="text-xs text-gray-500">3小时前 · Runway</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">支持生成长达10秒的4K分辨率视频，画质显著提升，新增风格化控制功能</p>
+                    <a href="https://runwayml.com" target="_blank" class="text-blue-500 hover:text-blue-700 font-medium">
+                        官网了解 → 
+                    </a>
+                </div>
+
+                <div class="border border-gray-200 rounded-lg p-6 card-hover transition-all duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="text-4xl mr-4">✨</div>
+                        <div>
+                            <h4 class="font-bold text-lg">Pika 场景转换</h4>
+                            <span class="text-xs text-gray-500">6小时前 · Pika</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">输入文字描述即可替换视频背景，保持人物主体不变</p>
+                    <a href="https://pika.art" target="_blank" class="text-blue-500 hover:text-blue-700 font-medium">
+                        官网了解 → 
+                    </a>
+                </div>
+
+                <div class="border border-gray-200 rounded-lg p-6 card-hover transition-all duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="text-4xl mr-4">🎲</div>
+                        <div>
+                            <h4 class="font-bold text-lg">Kling AI 3D视频</h4>
+                            <span class="text-xs text-gray-500">12小时前 · Kling</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">全新的文本到3D视频生成技术，可直接从文字描述创建3D场景和动画</p>
+                    <a href="https://klingai.com" target="_blank" class="text-blue-500 hover:text-blue-700 font-medium">
+                        官网了解 → 
+                    </a>
+                </div>
+
+                <div class="border border-gray-200 rounded-lg p-6 card-hover transition-all duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="text-4xl mr-4">💫</div>
+                        <div>
+                            <h4 class="font-bold text-lg">Luma AI 视频修复</h4>
+                            <span class="text-xs text-gray-500">18小时前 · Luma</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">自动提升低分辨率视频画质，去除噪点和抖动</p>
+                    <a href="https://lumalabs.ai" target="_blank" class="text-blue-500 hover:text-blue-700 font-medium">
+                        官网了解 → 
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Equipment News Section -->
+        <div class="bg-white rounded-xl p-6 shadow-md mb-8">
+            <h2 class="text-2xl font-bold mb-6">🎭 舞台特效设备新动态</h2>
+            <div class="grid grid-cols-1 gap-6">
+                <div class="border-2 border-orange-200 rounded-lg p-6 bg-orange-50 card-hover transition-all duration-300">
+                    <div class="flex items-start">
+                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=150&h=100&fit=crop" alt="控台" class="w-40 h-28 object-cover rounded-lg mr-6">
+                        <div class="flex-1">
+                            <h4 class="text-xl font-bold mb-2">🎛️ MA Lighting grandMA3 ultra</h4>
+                            <p class="text-sm text-gray-600 mb-2">厂商：MA Lighting</p>
+                            <div class="bg-white rounded-lg p-3 mb-3">
+                                <p class="text-sm"><strong>核心升级：</strong>全新处理器架构，处理速度提升3倍</p>
+                                <p class="text-sm"><strong>应用场景：</strong>大型演唱会、音乐节、剧院演出</p>
+                            </div>
+                            <a href="https://www.malighting.com" target="_blank" class="text-orange-600 hover:text-orange-800 font-medium">
+                                产品官网 → 
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-2 border-yellow-200 rounded-lg p-6 bg-yellow-50 card-hover transition-all duration-300">
+                    <div class="flex items-start">
+                        <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=150&h=100&fit=crop" alt="灯光" class="w-40 h-28 object-cover rounded-lg mr-6">
+                        <div class="flex-1">
+                            <h4 class="text-xl font-bold mb-2">💡 Chauvet Professional Maverick MK3</h4>
+                            <p class="text-sm text-gray-600 mb-2">厂商：Chauvet</p>
+                            <div class="bg-white rounded-lg p-3 mb-3">
+                                <p class="text-sm"><strong>核心升级：</strong>新增动态光束控制，支持更复杂的灯光效果编程</p>
+                                <p class="text-sm"><strong>应用场景：</strong>舞台演出、活动策划、沉浸式体验</p>
+                            </div>
+                            <a href="https://www.chauvetprofessional.com" target="_blank" class="text-yellow-600 hover:text-yellow-800 font-medium">
+                                产品官网 → 
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-2 border-blue-200 rounded-lg p-6 bg-blue-50 card-hover transition-all duration-300">
+                    <div class="flex items-start">
+                        <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=150&h=100&fit=crop" alt="LED屏幕" class="w-40 h-28 object-cover rounded-lg mr-6">
+                        <div class="flex-1">
+                            <h4 class="text-xl font-bold mb-2">🖥️ ROE Visual Carbon CB5</h4>
+                            <p class="text-sm text-gray-600 mb-2">厂商：ROE Visual</p>
+                            <div class="bg-white rounded-lg p-3 mb-3">
+                                <p class="text-sm"><strong>核心升级：</strong>超轻超薄设计，5mm像素间距，高对比度显示</p>
+                                <p class="text-sm"><strong>应用场景：</strong>LED大屏租赁、舞台背景、沉浸式投影</p>
+                            </div>
+                            <a href="https://www.roevisual.com" target="_blank" class="text-blue-600 hover:text-blue-800 font-medium">
+                                产品官网 → 
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-gray-800 text-white rounded-xl p-6 text-center">
+            <p class="mb-2">✅ 由 Trae 自动生成</p>
+            <p class="text-sm opacity-75">📧 可直接分享给团队成员</p>
+            <p class="text-sm opacity-75">🔄 每日 08:00 自动更新</p>
+        </div>
+    </div>
+
+    <script>
+        // Set current date and time
+        const now = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
+        document.getElementById('current-date').textContent = now.toLocaleDateString('zh-CN', options);
+        document.getElementById('update-time').textContent = now.toLocaleString('zh-CN');
+
+        // Create Pie Chart
+        const pieCtx = document.getElementById('pieChart').getContext('2d');
+        new Chart(pieCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['爆款视频', 'AI动态', '设备资讯'],
+                datasets: [{
+                    data: [3, 4, 3],
+                    backgroundColor: [
+                        'rgba(59, 130, 246, 0.8)',
+                        'rgba(147, 51, 234, 0.8)',
+                        'rgba(34, 197, 94, 0.8)'
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 20,
+                            font: {
+                                size: 14
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Create Bar Chart
+        const barCtx = document.getElementById('barChart').getContext('2d');
+        new Chart(barCtx, {
+            type: 'bar',
+            data: {
+                labels: ['LED建筑投影', '激光秀', '光影广告', 'Runway Gen-3'],
+                datasets: [{
+                    label: '热度指数',
+                    data: [156, 120, 89, 95],
+                    backgroundColor: [
+                        'rgba(147, 51, 234, 0.8)',
+                        'rgba(59, 130, 246, 0.8)',
+                        'rgba(236, 72, 153, 0.8)',
+                        'rgba(59, 130, 246, 0.8)'
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: '播放量（万）'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

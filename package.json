@@ -1,0 +1,13 @@
+{
+  "name": "feishu-daily-brief",
+  "version": "1.0.0",
+  "description": "飞书每日简报自动更新脚本",
+  "main": "update_brief.js",
+  "scripts": {
+    "update": "node update_brief.js"
+  },
+  "dependencies": {
+    "@larksuite/cli": "^1.0.0",
+    "node-fetch": "^2.7.0"
+  }
+}
