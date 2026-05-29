@@ -1,95 +1,153 @@
 # 海外创意·AI视频·舞台设备 每日简报
 
-## 📋 项目简介
+一个自动化、可视化的海外社媒行业资讯聚合平台，每日定时更新。
 
-这是一个完全自动化的每日简报系统，每天 08:00 自动生成并部署到 GitHub Pages。
+## 功能特性
 
-### 🎯 三大板块
+✅ **三大板块内容聚合**
+- 🔥 海外社媒创意视频（TikTok、Instagram、YouTube）
+- 🤖 AI视频行业新动态（技术突破、行业趋势、产品发布）
+- 🎭 舞台特效设备资讯（灯光、控台、特效设备）
 
-- **🔥 FB & INS 创意视频**：Facebook & Instagram 近24小时热门内容（3条）
-- **🤖 AI视频行业动态**：Runway、Pika、Kling、Luma 最新资讯（4条）
-- **🎭 舞台设备最新资讯**：专业灯光、控台设备、新品资讯（3条）
+✅ **现代化视觉设计**
+- 响应式布局，完美适配PC、手机、平板
+- 卡片化设计，圆角阴影，视觉层次分明
+- 流畅的hover动效，提升用户体验
 
-## 🚀 快速开始
+✅ **自动化更新**
+- 北京时间每日 08:00 自动抓取最新资讯
+- GitHub Actions 驱动的无服务器部署
+- 全程无需人工干预，自动生成网页
 
-### 方式一：手动生成（推荐）
+✅ **免登录访问**
+- GitHub Pages 托管，公开链接直接访问
+- 适合团队共享、内部展示、大屏轮播
+
+## 快速开始
+
+### 本地预览
 
 ```bash
-python main.py
+# 克隆项目
+git clone https://github.com/YOUR_USERNAME/daily-brief.git
+cd daily-brief
+
+# 安装依赖
+pip install -r requirements.txt
+
+# 生成最新内容
+python scripts/fetch_content.py
+python scripts/generate_html.py
+
+# 本地预览
+# 直接用浏览器打开 index.html
 ```
 
-### 方式二：一键部署
+### 部署到 GitHub Pages
 
-```bash
-# Windows PowerShell
-.\deploy.ps1
+1. **Fork 或创建新仓库**
+   - 登录 GitHub，创建新仓库 `daily-brief`
+
+2. **推送代码**
+   ```bash
+   git init
+   git add .
+   git commit -m "Initial commit"
+   git branch -M main
+   git remote add origin https://github.com/YOUR_USERNAME/daily-brief.git
+   git push -u origin main
+   ```
+
+3. **启用 GitHub Pages**
+   - 进入仓库 → Settings → Pages
+   - Source 选择 "Deploy from a branch"
+   - Branch 选择 `gh-pages` / `main`
+   - 点击 Save
+
+4. **查看网站**
+   - 等待 1-2 分钟部署完成
+   - 访问 `https://YOUR_USERNAME.github.io/daily-brief`
+
+## 自动化流程
+
+```mermaid
+graph LR
+    A[定时触发 08:00] --> B[抓取最新资讯]
+    B --> C[生成 HTML]
+    C --> D[部署到 GitHub Pages]
+    D --> E[公开访问]
 ```
 
-## 📁 项目结构
+### GitHub Actions
+
+项目使用 GitHub Actions 实现自动化：
+
+- **触发时间**: 北京时间每日 08:00 (`cron: '0 0 * * *'`)
+- **手动触发**: 支持 Workflow dispatch
+- **部署方式**: GitHub Pages
+
+## 目录结构
 
 ```
-.
-├── main.py              # 主程序（生成数据 + HTML）
-├── crawler.py           # Playwright 爬虫框架
-├── deploy.ps1           # GitHub 一键部署脚本
-├── index.html           # 生成的网页文件
-└── README.md            # 说明文档
+daily-brief/
+├── index.html                    # 主页面（自动生成）
+├── requirements.txt              # Python 依赖
+├── README.md                     # 项目说明
+├── .github/
+│   └── workflows/
+│       └── daily-update.yml     # GitHub Actions 配置
+└── scripts/
+    ├── fetch_content.py         # 内容抓取脚本
+    ├── generate_html.py         # HTML 生成脚本
+    └── data.json                # 缓存的数据（自动生成）
 ```
 
-## 🎨 设计规范
+## 自定义配置
 
-- **主色**：`#165DFF`
-- **强调色**：`#FF7D00`
-- **响应式**：手机/电脑完美适配
-- **卡片设计**：圆角 + 阴影 + 悬停效果
+### 修改定时任务时间
 
-## ⚙️ 配置
+编辑 `.github/workflows/daily-update.yml`:
 
-在 `main.py` 顶部可以修改配置：
-
-```python
-CONFIG = {
-    "github_repo": "https://github.com/jerry000020/daily-brief",
-    "web_url": "https://jerry000020.github.io/daily-brief/",
-    "primary_color": "#165DFF",
-    "accent_color": "#FF7D00"
-}
+```yaml
+schedule:
+  - cron: '0 0 * * *'  # 修改为你的时间
 ```
 
-## 📊 数据来源
+### 添加更多数据源
 
-### 🎬 视频数据
-- Facebook: `https://www.facebook.com/watch/?v=xxx`
-- Instagram: `https://www.instagram.com/reel/xxx/`
+编辑 `scripts/fetch_content.py` 添加新的RSS源或API。
 
-### 🤖 AI 动态
-- Runway: https://runwayml.com
-- Pika: https://pika.art
-- Kling: https://klingai.com
-- Luma: https://lumalabs.ai
+### 修改样式
 
-## 📝 注意事项
+直接编辑 `scripts/generate_html.py` 中的 CSS 样式部分。
 
-### 关于真实爬虫
+## 技术栈
 
-由于 Facebook 和 Instagram 有严格的反爬机制，真实爬取需要：
-1. 配置代理 IP
-2. 使用真实账户登录
-3. 遵守平台服务条款
+- **前端**: HTML5 + CSS3 + Vanilla JavaScript
+- **后端**: Python 3.11 + Requests + BeautifulSoup
+- **自动化**: GitHub Actions
+- **托管**: GitHub Pages
 
-本项目使用模拟数据生成器，可以直接使用。如需接入真实爬虫，请参考 `crawler.py` 进行扩展。
+## 使用场景
 
-### 定时任务
+- 📊 品牌部每日行业资讯汇总
+- 🎬 海外社媒运营团队内容参考
+- 🤖 AI视频行业从业者技术跟踪
+- 🎭 舞台设备采购决策参考
+- 📺 大屏展示/轮播显示
 
-配置 GitHub Actions 或 Trae 定时任务：
-- 执行时间：每天 08:00
-- 执行命令：`python main.py && git add . && git commit -m "每日更新" && git push`
+## 注意事项
 
-## 📞 访问
+1. 数据来源于公开RSS和网页，可能存在延迟
+2. 图片使用 picsum.photos 随机图片占位，可替换为真实图片
+3. 建议定期检查链接有效性
+4. GitHub Pages 免费版有流量限制，大流量场景需注意
 
-- **网页地址**：https://jerry000020.github.io/daily-brief/
-- **仓库地址**：https://github.com/jerry000020/daily-brief
+## License
 
-## 📄 License
+MIT License - 欢迎自由使用和修改
 
-MIT License
+---
+
+**🌐 项目地址**: https://github.com/YOUR_USERNAME/daily-brief  
+**📱 访问链接**: https://YOUR_USERNAME.github.io/daily-brief
